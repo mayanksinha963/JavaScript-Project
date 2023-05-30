@@ -1,0 +1,68 @@
+*{
+    margin :0;
+    padding :0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main
+{
+    background-color: #3498db;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box
+{
+    min-width: 400px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgb(0 0 0/ 50%);
+    background: #2980b9;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+#pass-box
+{
+    width: 100%;
+    display: block;
+    background-color: white;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.row
+{
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    color: white;
+    font-size: 20px;
+}
+
+label
+{
+    user-select: none;
+}
+
+#btn, #btn-1
+{
+    width: 100%;
+    font-size: 20px;
+    outline: 0px;
+    border: 0;
+    padding: 10px;
+    background-color: #34495e;
+    color: white;
+    margin-top: 10px;
+    border-radius: 5px;
+
+}
+#btn:active, #btn-1:active
+{
+    background-color: black;
+}
