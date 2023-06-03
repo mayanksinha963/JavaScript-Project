@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: black;
+}
+
+.container
+{
+    background-color: grey;
+    color: white;
+    min-width: 50%;
+    padding: 20px;
+    box-shadow: 5px 5px 10px rgba(199, 199, 199, 0.521);
+}
+
+.wincount
+{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.next-turn
+{
+    margin: auto auto;
+    display: block;
+    background-color: black;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.next-turn:active
+{
+    background-color: grey;
+}
+
+.back
+{
+    display: none;
+}
+
+#WTL
+{
+    display: none;
+}
+
+
