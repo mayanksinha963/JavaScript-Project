@@ -10,7 +10,7 @@ addBtn.addEventListener("click", function () {
 const saveNotes = () =>
 {
     const notes = document.querySelectorAll('.note textarea');
-    const data = [];
+    const data = JSON.parse(localStorage.getItem('note'))??[];
     notes.forEach(
         (note) =>
         {

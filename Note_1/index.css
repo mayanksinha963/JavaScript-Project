@@ -1,27 +1,25 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    background-color: skyblue;
-}
-
-.add-note {
+.add-btn
+{
     background-color: black;
     color: white;
     width: 100px;
-    position: fixed;
-    top: 10px;
-    right: 10px;
     padding: 10px;
-    border-radius: 7px;
-    text-align: center;
+    margin: 10px;
+    border-radius: 8px;
+    position: fixed;
+    right: 0;
+    top: 2px;
     cursor: pointer;
 }
 
-.add-note:active {
+.add-btn:active
+{
     background-color: grey;
 }
 
@@ -33,31 +31,43 @@ body {
 
 .box
 {
-    width: 25%;
-    margin: 15px;
+    width: 20%;
     margin-top: 50px;
-    flex-basis: 20%;
+    padding: 10px;
 }
 
 .upper
 {
+   
+    display: flex;
+    padding: 4px;
+    justify-content: space-around;
     background-color: grey;
-    padding: 5px;
-    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    
 }
 
-.upper img {
-    width: 15px;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.upper p
+.padding
 {
-    text-align: center;
-    margin-left: 5px;
-    display: inline;
+    padding: 5px;
+}
+
+.pointer
+{
     cursor: pointer;
+}
+
+
+.upper img
+{
+    width: 30px;
+}
+
+.text
+{
+    
+    width: 100%;
+    resize: none;
 }
 
 .bold
@@ -68,10 +78,4 @@ body {
 .italic
 {
     font-style: italic;
-}
-.box textarea
-{
-    resize: none;
-    width: 100%;
-    border: none;
 }

@@ -1,166 +1,174 @@
-const addBtn = document.getElementById('addBtn');
+const addbtn = document.getElementById('add-btnid');
+const main = document.getElementById('mainid');
 
-
-const savenote = (add) => {
-    let data = [];
-    const note = document.querySelectorAll('.box textarea');
-    // const note1 = add.querySelector('.box textarea');
-    // console.log(note1.value);
-    for (let notes of note) {
-        // if (notes.value.length != 0) {
-
-            // console.log(notes.value.length);
-            data.push(notes.value);
-            console.log(data);
-            // if (note1.value === notes.value) {
-            //     break;
-            // }
-        //}
-
-    }
-
-    // note.forEach((notes) => {
-    //     if (note1.value)
-    //         data.push(notes.value);
-    // })
-    let k = 0;
-    for(let i =0; i<note.length; i++)
-    {
-        if(note[k].value.length === 0)
-        {
-            let j = i;
-            data.splice(j, 1);
-            console.log(data);
-            console.log(i);
-            j--;
-            i = j;
-            k++;
-
+const saveNotes = () => {
+    let notes = document.querySelectorAll('#textareaid');
+    console.log(notes.length);
+    // console.log(notes)
+    const data = [];
+    notes.forEach((note) => {
+        if (note.value.length) {
+            data.push(note.value);
         }
+    })
+    if (data.length === 0) {
+        localStorage.removeItem('notes');
     }
-    
-    // if (data.length === 0) {
-    //     localStorage.removeItem('notes');
-    // }
-    // else {
-    //     localStorage.setItem('notes', JSON.stringify(data));
-    // }
-
-    localStorage.setItem('notes', JSON.stringify(data));
-
-
-
+    else {
+        localStorage.setItem('notes', JSON.stringify(data));
+    }
 }
 
-const boldfun = (add) =>
-{
-    const note = document.querySelectorAll('.box textarea');
-    const bold = add.querySelector('#boldid');
-    const boldall = document.querySelectorAll('#boldid');
-   
-    const textarea = add.querySelector('#textareaid');
-    const elements = Array.from(document.querySelectorAll('#textareaid'));
-    // console.log(elements);
-    let bolddata = JSON.parse(localStorage.getItem('bolds'))??[];
-    bold.classList.toggle('bold');
-    textarea.classList.toggle('bold');
-    let i = 0;
-        for (let b of boldall) {
-            
-            
-                
-            if (b.classList.contains('bold')) {
-                const index = elements.indexOf(textarea);
-                bolddata[i] = 'B';
-                // console.log(bolddata[i]);
-            }
-            else if(!(b.classList.contains('bold')))
-            {
-                const index = elements.indexOf(textarea);
-                bolddata[i] = null;
-                // console.log(bolddata[i]);
-                
-                
-            }
-        
-        i++;
+const boldNotes = () => {
+    let notes = document.querySelectorAll('#textareaid');
+    let notesall = document.querySelectorAll('#boldid');
+    let textall = document.querySelectorAll('#textareaid');
+    const data = [];
+    // console.log(notes.length);
+
+    for (let i = 0; i < textall.length; i++) {
+        // console.log(notesall[i]);
+        if (textall[i].value.length && notesall[i].classList.contains('bold')) {
+            data.push('B');
         }
-
-        for(let j = 0; j<elements.length; j++)
-        {
-            console.log(elements[j]);
-
-            // if(elements[j].value.length === 0)
-            // {
-            //     console.log('Hello');
-            // }
-            // console.log(bolddata[j]);
-            if(bolddata[j] === null)
-            {
-                if(elements[j].value.length === 0)
-                {
-                    
-                    // console.log(elements[j].value);
-                    bolddata.splice(j,1);
-                    console.log(bolddata);
-                }
-            }
+        else if (textall[i].value.length && !notesall[i].classList.contains('bold')) {
+            data.push('N');
         }
+    }
 
-        
-        localStorage.setItem('bolds', JSON.stringify(bolddata));
-        
+    localStorage.setItem('bold', JSON.stringify(data));
 }
 
+const boldItalic = () => {
+    let notes = document.querySelectorAll('#textareaid');
+    let notesall = document.querySelectorAll('#italicid');
+    let textall = document.querySelectorAll('#textareaid');
+    const data = [];
+
+    for (let i = 0; i < textall.length; i++) {
+        // console.log(notesall[i]);
+        if (textall[i].value.length && notesall[i].classList.contains('italic')) {
+            data.push('I');
+        }
+        else if (textall[i].value.length && !notesall[i].classList.contains('italic')) {
+            data.push('N');
+        }
+    }
+    localStorage.setItem('italic', JSON.stringify(data));
+}
+
+const addNote = (note = "") => {
+    const box1 = document.createElement('div');
+    box1.innerHTML =
+        `<div class="upper">
+    <div class="padding pointer" id="boldid">B</div>
+    <div class="padding pointer" id="italicid">I</div>
+    <img src="save.png" class = "save padding pointer" id="saveid" alt="" srcset="">
+    <img src="Trash.png"  class="trash padding pointer" id="trashid" srcset="">
+</div>
+<textarea name="" id="textareaid" class="text" cols="30" rows="10">${note}</textarea>
+</div>`
+
+    box1.classList.add('box');
+    main.appendChild(box1);
 
 
-const addNote = (text = "") => {
-    const add = document.createElement('div');
-    // const box = document.getElementById('boxid');
-    const main = document.getElementById('mainid');
-
-    add.innerHTML = `
-    <div id="boxid">
-    <div class="upper">
-    <p id="boldid">B</p>
-    <p id="italicid">I</p>
-        <img src="Trash.png" alt="" srcset="" id="trash">
-        <img src="save.png" alt="" srcset="" id="save">
-    </div>
-    <textarea name="" cols="30" rows="10" id="textareaid">${text}</textarea>
-</div>`;
-    add.classList.add('box');
-    main.appendChild(add);
-
-
-
-    const trash = add.querySelector('#trash');
-    const save = add.querySelector('#save');
-
+    const trash = box1.querySelector('#trashid');
 
     trash.addEventListener('click', () => {
-        add.remove();
-        savenote();
+
+        box1.remove();
+        boldNotes();
+        boldItalic();
+        saveNotes();
+
     })
 
+    const save = box1.querySelector('#saveid');
     save.addEventListener('click', () => {
-        savenote(add);
+        saveNotes();
     })
+
+    const boldid = box1.querySelector('#boldid');
+    // console.log(boldid);
+    let notes = box1.querySelector('#textareaid');
+    // let textall = document.querySelectorAll('#textareaid');
+    // const data = [];
+    // let notesall = document.querySelectorAll('#boldid');
+
+
+
+    boldid.addEventListener('click', () => {
+        // const element = Array.from(textall);
+        boldid.classList.toggle('bold');
+        if (boldid.classList.contains('bold')) {
+            notes.style.fontWeight = 'bold';
+        }
+        else {
+            notes.style.fontWeight = 'normal';
+        }
+        
+        boldNotes();
+    });
+
+    const italicid = box1.querySelector('#italicid');
+    italicid.addEventListener('click', () =>
+    {
+        italicid.classList.toggle('italic');
+        if(italicid.classList.contains('italic'))
+        {
+            notes.style.fontStyle = "italic";
+        }
+        else
+        {
+            notes.style.fontStyle = "normal";
+        }
+        boldItalic ();
+    })
+}
+
+
+
+
+addbtn.addEventListener('click',
+    () => {
+        addNote();
+
+    }
+);
+
+const boldnotesdef = (data, index) => {
+
+    const box1 = document.querySelectorAll('.box');
+    const boldid = document.querySelectorAll('#boldid');
     
 
-    const bold = add.querySelector('#boldid');
-    bold.addEventListener('click', () =>
-    {
-        boldfun(add);
-        // console.log(elements.indexOf(textarea));
-        
-    })
+    let notes = document.querySelectorAll('#textareaid');
+
+    console.log(box1[index]);
+        if (data == 'B') {
+            
+            boldid[index].classList.add('bold');
+            notes[index].style.fontWeight = 'bold';
+        }
+     
     
 }
 
-addBtn.addEventListener('click', () => {
-    addNote();
-});
+const italicnotesdef =(data, index) => {
+    const box1 = document.querySelectorAll('.box');
+    const boldid = document.querySelectorAll('#italicid');
+    
+
+    let notes = document.querySelectorAll('#textareaid');
+
+    
+        if (data == 'I') {
+            
+            boldid[index].classList.add('italic');
+            notes[index].style.fontStyle = 'italic';
+        }
+}
 
 (
     function () {
@@ -169,15 +177,32 @@ addBtn.addEventListener('click', () => {
             addNote();
         }
         else {
-            lsnotes.forEach(element => {
-                addNote(element);
-            });
+            lsnotes.forEach((note) => {
+                console.log(note);
+                addNote(note);
+            })
         }
+        const box1 = document.querySelectorAll('.box');
+        
+        const bnotes = JSON.parse(localStorage.getItem('bold'));
+        // console.log(bnotes[0]);
+        for(let i =0; i< box1.length; i++)
+        {
+            if(bnotes != null)
+            {
+                boldnotesdef(bnotes[i], i);
+            }
+        }
+
+        const inotes = JSON.parse(localStorage.getItem('italic'));
+        // console.log(bnotes[0]);
+        for(let i =0; i< box1.length; i++)
+        {
+            if(inotes != null)
+            {
+                italicnotesdef(inotes[i], i);
+            }
+        }
+
     }
 )();
-
-
-// setInterval(() => {
-//     savenote()
-// }
-//     , 1000);
