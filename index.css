@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main
+{
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background : linear-gradient(
+        to right,
+        #201d2e 50%,
+        #f6f6f6 50%
+
+    )
+}
+
+.box
+{
+
+    width: 70vmin;
+    padding: 30px;
+    border-radius: 15px;
+    line-height: 2.5;
+    background-color: white;
+}
+
+.wrapper
+{
+    display: flex;
+
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+#text
+{
+    flex-basis: 60%;
+    padding: 10px;
+    border-radius: 6px;
+    
+}
+
+#Search
+{
+    padding: 10px;
+    flex-basis: 30%;
+    background-color: #201d2e;
+    color: #f6f6f6;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+#paragraph
+{
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
